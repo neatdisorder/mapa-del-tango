@@ -1,28 +1,18 @@
 import Head from "next/head";
 import { Component } from "react";
-import { attributes, react as HomeContent } from "../content/home.md";
 import { ChakraProvider, Heading } from '@chakra-ui/react';
 import Script from "next/script";
-
 export default class Home extends Component {
   render() {
-    let { title, cats } = attributes;
     return (
       <ChakraProvider>
         <Head>
           <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
         </Head>
         <article>
-          <Heading>{title}</Heading>
-          <HomeContent />
-          <ul>
-            {cats.map((cat, k) => (
-              <li key={k}>
-                <h2>{cat.name}</h2>
-                <p>{cat.description}</p>
-              </li>
-            ))}
-          </ul>
+            <Heading>
+                Test
+            </Heading>
         </article>
       </ChakraProvider>
     );
