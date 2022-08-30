@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Map from "../components/Map/Map";
+import Map from "../src/components/MapLayer/Map";
+import Menu from "../src/components/UserInterface/Menu";
 
 const Index = () => {
   return (
@@ -9,9 +10,8 @@ const Index = () => {
       <Head>
         <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
       </Head>
-      <div>
-        <Map />
-      </div>
+      <Menu />
+      <Map />
     </>
   );
 };
