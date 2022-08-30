@@ -5,7 +5,13 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 // import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 
+//
+import { attributes, react as MuseoContent } from "../../../../content/puntos/museo-casa-carlos-gardel.md";
+//
+
 const MapComponent = () => {
+
+  let { title, xCoord, yCoord } = attributes;
 
   return (
     <MapContainer
@@ -19,9 +25,10 @@ const MapComponent = () => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[-34.60, -58.40]}>
+      <MuseoContent />
+      <Marker position={[{xCoord}, {yCoord}]}>
         <Popup>
-          Museo Casa Carlos Gardel
+          {title}
         </Popup>
       </Marker>
       <ZoomControl position="bottomright" />

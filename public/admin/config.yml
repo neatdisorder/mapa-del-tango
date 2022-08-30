@@ -20,3 +20,11 @@ collections:
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+  - name: "puntos"
+    label: "Puntos"
+    folder:  "content/puntos"
+    create: true
+    fields:
+      - { label: "Nombre", name: "name", widget: "string"}
+      - { label: "X", name: 'xCoord', widget: "number"}
+      - { label: "Y", name: 'yCoord', widget: "number"}
