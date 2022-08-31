@@ -11,7 +11,9 @@ import { attributes, react as MuseoContent } from "../../../../content/puntos/mu
 
 const MapComponent = () => {
 
-  let { title, xCoord, yCoord } = attributes;
+  let { name, xCoord, yCoord } = attributes;
+
+  console.log(name, xCoord, yCoord);
 
   return (
     <MapContainer
@@ -26,9 +28,9 @@ const MapComponent = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MuseoContent />
-      <Marker position={[{xCoord}, {yCoord}]}>
+      <Marker position={[xCoord, yCoord]}>
         <Popup>
-          {title}
+          {name}
         </Popup>
       </Marker>
       <ZoomControl position="bottomright" />
