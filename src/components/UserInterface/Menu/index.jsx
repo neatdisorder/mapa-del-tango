@@ -16,22 +16,22 @@ const Menu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex>
-      <Flex align="center" p="0.5em" onClick={onOpen} cursor='pointer'>
-        <HamburgerIcon w={7} h={7} />
-      </Flex>
+    <Flex px="24px" py="16px" justify='space-between'>
       <Flex align="center">
         <Heading>MAPA DEL TANGO</Heading>
+      </Flex>
+      <Flex align="center" onClick={onOpen} cursor="pointer">
+        <HamburgerIcon w={7} h={7} />
       </Flex>
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
-            <Flex justify='space-between'>
+            <Flex justify="space-between">
               <Flex>
                 <Heading>MAPA DEL TANGO</Heading>
               </Flex>
-              <Flex align='center' cursor='pointer'>
+              <Flex align="center" cursor="pointer">
                 <CloseIcon onClick={onClose} />
               </Flex>
             </Flex>
