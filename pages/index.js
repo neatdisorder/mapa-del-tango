@@ -29,7 +29,7 @@ Index.propTypes = {
   output: PropTypes.string.isRequired,
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const directorioPuntos = path.join(process.cwd(), "content/puntos");
   const archivosPuntos = fs.readdirSync(directorioPuntos);
   const rutasCompletas = archivosPuntos.map((archivo) =>
