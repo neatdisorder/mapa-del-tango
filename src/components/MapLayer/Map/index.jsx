@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
 import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
 
-const Map = () => {
-  const Map = dynamic(() => import("../MapLeafletComponent"), {
+const Map = ({ todosLosPuntos }) => {
+  const MapLeafletComponent = dynamic(() => import("../MapLeafletComponent"), {
     ssr: false,
   });
-  return <Map />;
+  return <MapLeafletComponent todosLosPuntos={todosLosPuntos} />;
+};
+
+Map.propTypes = {
+  todosLosPuntos: PropTypes.string.isRequired,
 };
 
 export default Map;

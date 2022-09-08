@@ -1,23 +1,23 @@
-import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer, ZoomControl } from "react-leaflet";
+import React from "react";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  ZoomControl,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
-// import * as L from 'leaflet';
-import 'leaflet-defaulticon-compatibility';
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
+import "leaflet-defaulticon-compatibility";
+import PropTypes from "prop-types";
 
-//
-import { attributes, react as MuseoContent } from "../../../../content/puntos/museo-casa-carlos-gardel.md";
-//
+const MapLeafletComponent = ({ todosLosPuntos }) => {
 
-const MapComponent = () => {
-
-  let { name, xCoord, yCoord } = attributes;
-
-  console.log(name, xCoord, yCoord);
+  const puntos = JSON.parse(todosLosPuntos);
 
   return (
     <MapContainer
-      center={[-34.60, -58.40]}
+      center={[-34.6, -58.4]}
       zoom={15}
       scrollWheelZoom={false}
       style={{ height: "calc(100vh - 72px)", width: "100%" }}
@@ -27,15 +27,23 @@ const MapComponent = () => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <MuseoContent />
-      <Marker position={[xCoord, yCoord]}>
-        <Popup>
-          {name}
-        </Popup>
-      </Marker>
+      {puntos.map((punto) => {
+        return (
+          <Marker
+            position={[punto.data.xCoord, punto.data.yCoord]}
+            key={punto.data.name}
+          >
+            <Popup>{punto.data.name}</Popup>
+          </Marker>
+        );
+      })}
       <ZoomControl position="bottomright" />
     </MapContainer>
   );
 };
 
-export default MapComponent;
+MapLeafletComponent.propTypes = {
+  todosLosPuntos: PropTypes.string.isRequired,
+};
+
+export default MapLeafletComponent;
