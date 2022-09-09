@@ -24,6 +24,7 @@ collections:
     label: "Puntos"
     folder:  "content/puntos"
     create: true
+    identifier_field: name
     fields:
       - { label: "Nombre", name: "name", widget: "string"}
       - { label: "X", name: 'xCoord', widget: "number"}
