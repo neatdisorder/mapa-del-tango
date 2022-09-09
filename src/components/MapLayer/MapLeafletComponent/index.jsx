@@ -13,12 +13,10 @@ import PropTypes from "prop-types";
 
 const MapLeafletComponent = ({ todosLosPuntos }) => {
 
-  const puntos = JSON.parse(todosLosPuntos);
-
   return (
     <MapContainer
-      center={[-34.6, -58.4]}
-      zoom={15}
+      center={[-34.6075323, -58.4457706]}
+      zoom={12}
       scrollWheelZoom={false}
       style={{ height: "calc(100vh - 72px)", width: "100%" }}
       zoomControl={false}
@@ -27,7 +25,7 @@ const MapLeafletComponent = ({ todosLosPuntos }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {puntos.map((punto) => {
+      {todosLosPuntos.map((punto) => {
         return (
           <Marker
             position={[punto.data.xCoord, punto.data.yCoord]}
@@ -43,7 +41,7 @@ const MapLeafletComponent = ({ todosLosPuntos }) => {
 };
 
 MapLeafletComponent.propTypes = {
-  todosLosPuntos: PropTypes.string.isRequired,
+  todosLosPuntos: PropTypes.array.isRequired,
 };
 
 export default MapLeafletComponent;

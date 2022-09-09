@@ -1,10 +1,10 @@
-import React from "react";
+import { React, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Map from "../src/components/MapLayer/Map";
 import Menu from "../src/components/UserInterface/Menu";
 
-//
+// IMPORTS PARA IMPORTAR CONTENIDO
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -12,13 +12,26 @@ import PropTypes from "prop-types";
 //
 
 const Index = ({ output }) => {
+  const [puntos, setPuntos] = useState(output);
+
+  const filtrarPuntos = (category) => {
+    if (category === "todos") {
+      setPuntos(output);
+    } else {
+      const puntosFiltrados = output.filter(
+        (punto) => punto.data.category === category
+      );
+      setPuntos([...puntosFiltrados]);
+    }
+  };
+
   return (
     <>
       <Head>
         <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
       </Head>
-      <Menu />
-      <Map todosLosPuntos={output} />
+      <Menu filtrarPuntos={filtrarPuntos} />
+      <Map todosLosPuntos={puntos} />
     </>
   );
 };
@@ -26,7 +39,7 @@ const Index = ({ output }) => {
 export default Index;
 
 Index.propTypes = {
-  output: PropTypes.string.isRequired,
+  output: PropTypes.array.isRequired,
 };
 
 export async function getStaticProps() {
@@ -37,11 +50,11 @@ export async function getStaticProps() {
   );
   const todosLosPuntos = rutasCompletas.map((ruta) => matter.read(ruta));
 
-  const output = JSON.stringify(todosLosPuntos);
+  const output = JSON.parse(JSON.stringify(todosLosPuntos));
 
   return {
     props: {
-      output
+      output,
     },
   };
 }

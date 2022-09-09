@@ -10,7 +10,7 @@ const Map = ({ todosLosPuntos }) => {
 };
 
 Map.propTypes = {
-  todosLosPuntos: PropTypes.string.isRequired,
+  todosLosPuntos: PropTypes.array.isRequired,
 };
 
 export default Map;

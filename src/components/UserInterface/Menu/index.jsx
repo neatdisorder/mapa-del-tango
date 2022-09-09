@@ -11,12 +11,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import PropTypes from "prop-types";
 
-const Menu = () => {
+const Menu = ({ filtrarPuntos }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex px="24px" py="16px" justify='space-between'>
+    <Flex px="24px" py="16px" justify="space-between">
       <Flex align="center">
         <Heading>MAPA DEL TANGO</Heading>
       </Flex>
@@ -37,15 +38,48 @@ const Menu = () => {
             </Flex>
           </DrawerHeader>
           <DrawerBody>
-            <Text>Milongas</Text>
-            <Text>Centros culturales</Text>
-            <Text>Casas de artistas</Text>
-            <Text>Acerca de este proyecto</Text>
+          <Text
+              onClick={() => {
+                filtrarPuntos("todos");
+                onClose();
+              }}
+            >
+              TODOS
+            </Text>
+            <Text
+              onClick={() => {
+                filtrarPuntos("milonga");
+                onClose();
+              }}
+            >
+              MILONGAS
+            </Text>
+            <Text
+              onClick={() => {
+                filtrarPuntos("centro-cultural");
+                onClose();
+              }}
+            >
+              CENTROS CULTURALES
+            </Text>
+            <Text
+              onClick={() => {
+                filtrarPuntos("casa-artista");
+                onClose();
+              }}
+            >
+              CASAS DE ARTISTAS
+            </Text>
+            <Text>ACERCA DE ESTE PROYECTO</Text>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
     </Flex>
   );
+};
+
+Menu.propTypes = {
+  filtrarPuntos: PropTypes.func.isRequired,
 };
 
 export default Menu;
