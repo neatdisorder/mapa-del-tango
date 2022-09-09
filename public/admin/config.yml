@@ -27,5 +27,6 @@ collections:
     identifier_field: name
     fields:
       - { label: "Nombre", name: "name", widget: "string"}
+      - { label: "Categoría", name: "category", widget: "string"}
       - { label: "X", name: 'xCoord', widget: "number"}
       - { label: "Y", name: 'yCoord', widget: "number"}
